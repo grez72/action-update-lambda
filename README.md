@@ -36,3 +36,6 @@ jobs:
           dry-run: false
 ```
 
+# from this template:
+https://github.com/bitoiu/node-js-action-template
+https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action

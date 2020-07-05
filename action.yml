@@ -1,24 +1,29 @@
 name: 'AWS Update Lambda Function and Alias Action'
 description: 'Github Action to Update a Lambda Function and Alias'
-author: 'George Alvarez'
+author: 'George Alvarez <grez72@gmail.com>'
 branding:
     icon: 'check-square'
     color: 'orange'
 inputs:
     function-name:
         description: 'Lambda Function Name'
+        required: true
         default: ''
     package:
         description: 'Zip Package of Lambda and dependencies'
+        required: true
         default: ''
     AWS_SECRET_ACCESS_KEY:
         description: 'AWS Secret Access Key'
+        required: true
         default: ''
     AWS_ACCESS_KEY_ID:
         description: 'AWS Access Key ID'
+        required: true
         default: ''
     AWS_REGION:
         description: 'AWS Region'
+        required: true
         default: ''
     alias-name:
         description: 'Lambda Alias Name'
@@ -30,5 +35,14 @@ inputs:
         description: 'Whether to perform a dry-run'
         default: ''
 runs:
-    using: 'node12'
-    main: 'index.js'
+    using: 'docker'
+    main: 'Dockerfile'
+    args:
+        - ${{ inputs.function-name }}
+        - ${{ inputs.package }}
+        - ${{ inputs.AWS_SECRET_ACCESS_KEY }}
+        - ${{ inputs.AWS_ACCESS_KEY_ID }}
+        - ${{ inputs.AWS_REGION }}
+        - ${{ inputs.alias-name }}
+        - ${{ inputs.publish }}
+        - ${{ inputs.dry-run }}
