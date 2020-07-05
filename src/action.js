@@ -12,8 +12,8 @@ async function run() {
         const AWS_ACCESS_KEY_ID = core.getInput('AWS_ACCESS_KEY_ID');
         const AWS_REGION = core.getInput('AWS_REGION');
         const aliasName = core.getInput('alias-name');
-        const publish = core.getInput('publish');
-        const dryRun = core.getInput('dry-run');
+        const publish = core.getInput('publish') == 'true';
+        const dryRun = core.getInput('dry-run') == 'true';
 
         console.log(`Updating Function Name ${functionName} with ${package}!`);
       
