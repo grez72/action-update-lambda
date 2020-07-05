@@ -19,6 +19,7 @@ async function run() {
       
         var zipBuffer = fs.readFileSync(`./${package}`);
         core.debug('Package put into memory buffer');
+        core.debug(`AWS_REGION: ${AWS_REGION}`);
 
         const lambda = new AWS.Lambda({
             apiVersion: '2015-03-31',
