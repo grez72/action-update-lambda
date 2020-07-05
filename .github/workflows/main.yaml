@@ -1,18 +1,3 @@
-# action-update-lambda
- Github Action to Update an AWS Lambda Function and Alias
-
-# How to use
-
-Works with zip package created in steps prior to this action.
-
-Add secrets to your github repo (Settings -> Secrets):
-  * AWS_REGION
-  * AWS_ACCESS_KEY_ID
-  * AWS_SECRET_ACCESS_KEY
-
-Update Lambda Function and Alias ("prod"), when there's a push to the master branch.
-
-```
 name: Test update Lambda Function and Alias
 on: [push]
 jobs:
@@ -34,5 +19,3 @@ jobs:
           alias-name: prod
           publish: true
           dry-run: false
-```
-
