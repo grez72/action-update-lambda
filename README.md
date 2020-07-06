@@ -10,7 +10,7 @@ Add secrets to your github repo (Settings -> Secrets):
   * AWS_ACCESS_KEY_ID
   * AWS_SECRET_ACCESS_KEY
 
-Update Lambda Function and Alias ("prod"), when there's a push to the master branch.
+Example: Update Lambda Function and Alias ("prod"), when there's a push to the master branch.
 
 ```
 name: Test update Lambda Function and Alias
