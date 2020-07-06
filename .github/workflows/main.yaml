@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - run: echo "THIS IS A TEST PACKAGE" > file.txt
+      - run: echo "THIS IS A TEST PACKAGE, v0.0.2" > file.txt
       - run: zip lambda.zip file.txt
       - name: AWS Lambda Deploy Production Version if master branch
         if: github.ref == 'refs/heads/master'

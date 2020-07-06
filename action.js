@@ -1,35 +1,35 @@
-const core = require('@actions/core');
-const github = require('@actions/github');
+const { getInput, setFailed, debug } = require('@actions/core');
+const Lambda = require('aws-sdk/clients/lambda');
 const fs = require('fs');
-const AWS = require('aws-sdk');
+
+const AWS_SECRET_ACCESS_KEY = getInput('AWS_SECRET_ACCESS_KEY');
+const AWS_ACCESS_KEY_ID = getInput('AWS_ACCESS_KEY_ID');
+const AWS_REGION = getInput('AWS_REGION');
+
+const lambda = new Lambda({
+    apiVersion: '2015-03-31',
+    region: AWS_REGION,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    maxRetries: 3,
+    sslEnabled: true,
+    logger: console,
+});
 
 async function run() {
     try {
 
-        const functionName = core.getInput('function-name');
-        const package = core.getInput('package');
-        const AWS_SECRET_ACCESS_KEY = core.getInput('AWS_SECRET_ACCESS_KEY');
-        const AWS_ACCESS_KEY_ID = core.getInput('AWS_ACCESS_KEY_ID');
-        const AWS_REGION = core.getInput('AWS_REGION');
-        const aliasName = core.getInput('alias-name');
-        const publish = core.getInput('publish') == 'true';
-        const dryRun = core.getInput('dry-run') == 'true';
+        const functionName = getInput('function-name');
+        const package = getInput('package');
+        const aliasName = getInput('alias-name');
+        const publish = getInput('publish') == 'true';
+        const dryRun = getInput('dry-run') == 'true';
 
-        console.log(`Updating Function Name ${functionName} with ${package}!`);
+        debug(`Updating Function Name ${functionName} with ${package}!`);
       
         var zipBuffer = fs.readFileSync(`./${package}`);
-        core.debug('Package put into memory buffer');
-        core.debug(`AWS_REGION: ${AWS_REGION}`);
-
-        const lambda = new AWS.Lambda({
-            apiVersion: '2015-03-31',
-            region: AWS_REGION,
-            secretAccessKey: AWS_SECRET_ACCESS_KEY,
-            accessKeyId: AWS_ACCESS_KEY_ID,
-            maxRetries: 3,
-            sslEnabled: true,
-            logger: console,
-        });
+        debug('Package put into memory buffer');
+        debug(`AWS_REGION: ${AWS_REGION}`);
 
         const update_params = {
             FunctionName: functionName,
@@ -66,7 +66,7 @@ async function run() {
         }        
 
     } catch (error) {
-        core.setFailed(error.message);
+        setFailed(error.message);
     }
 }
   

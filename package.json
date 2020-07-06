@@ -1,10 +1,11 @@
 {
   "name": "action-update-lambda",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Github Action to Update an AWS Lambda Function and Alias",
-  "main": "index.js",
+  "main": "action.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build action.js"
   },
   "repository": {
     "type": "git",

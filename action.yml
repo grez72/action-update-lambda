@@ -35,14 +35,5 @@ inputs:
         description: 'Whether to perform a dry-run'
         default: ''
 runs:
-    using: 'docker'
-    image: 'Dockerfile'
-    args:
-        - ${{ inputs.function-name }}
-        - ${{ inputs.package }}
-        - ${{ inputs.AWS_SECRET_ACCESS_KEY }}
-        - ${{ inputs.AWS_ACCESS_KEY_ID }}
-        - ${{ inputs.AWS_REGION }}
-        - ${{ inputs.alias-name }}
-        - ${{ inputs.publish }}
-        - ${{ inputs.dry-run }}
+    using: 'node12'
+    main: 'dist/index.js'
