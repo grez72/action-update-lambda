@@ -58,7 +58,7 @@ async function run() {
             //}
         };
 
-        if (dryRun !== true) {
+        if (dryRun !== true && aliasName !== '' && aliasName !== null && aliasName !== 'null') {
             const alias = await lambda.updateAlias(alias_params).promise();            
             console.log("\nsuccess! updated alias");
         }        
