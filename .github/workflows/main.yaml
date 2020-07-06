@@ -4,12 +4,12 @@ jobs:
   lambda:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@node-modules
+      - uses: actions/checkout@master
       - run: echo "THIS IS A TEST PACKAGE, v0.0.2" > file.txt
       - run: zip lambda.zip file.txt
       - name: AWS Lambda Deploy Production Version if master branch
-        # if: github.ref == 'refs/heads/master'
-        uses: grez72/action-update-lambda@node-modules
+        if: github.ref == 'refs/heads/master'
+        uses: grez72/action-update-lambda@master
         with:
           package: lambda.zip
           function-name: ACTION-TEST-FUNCTION
