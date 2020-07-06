@@ -38,3 +38,8 @@ jobs:
           publish: true
           dry-run: false
 ```
+
+# How to update
+Edit actions.js
+Don't forget to run npm build!
+Commit, issue new release
