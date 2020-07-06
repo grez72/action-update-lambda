@@ -44,10 +44,12 @@ async function run() {
         const data_log = (({ FunctionName, Version, RevisionId, LastUpdateStatus }) => ({ FunctionName, Version, RevisionId, LastUpdateStatus }))(data);
         console.log("\nsuccess! updated lambda function:", data_log, "\n");        
 
+        console.log("TESTING aliasName", aliasName !== '');
+
         if (dryRun !== true && aliasName !== '' && aliasName !== null && aliasName !== 'null') {
 
             console.log(`Updating Alias Name ${aliasName} to ${functionName}:${data.Version}!`);
-            
+
             const alias_params = {
                 FunctionName: functionName, /* required */
                 Name: aliasName, /* required */
