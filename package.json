@@ -1,0 +1,26 @@
+{
+  "name": "action-update-lambda",
+  "version": "0.0.1",
+  "description": "Github Action to Update an AWS Lambda Function and Alias",
+  "main": "action.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "ncc build action.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grez72/action-update-lambda.git"
+  },
+  "keywords": [],
+  "author": "George Alvarez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grez72/action-update-lambda/issues"
+  },
+  "homepage": "https://github.com/grez72/action-update-lambda#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0",
+    "aws-sdk": "^2.709.0"
+  }
+}
