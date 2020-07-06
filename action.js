@@ -46,19 +46,20 @@ async function run() {
 
         console.log(`Updating Alias Name ${aliasName} to ${functionName}:${data.Version}!`);
 
-        const alias_params = {
-            FunctionName: functionName, /* required */
-            Name: aliasName, /* required */
-            FunctionVersion: data.Version,
-            // RevisionId: 'STRING_VALUE',
-            //RoutingConfig: {
-            //  AdditionalVersionWeights: {
-            //    '<AdditionalVersion>': 'NUMBER_VALUE',
-            //  }
-            //}
-        };
-
         if (dryRun !== true && aliasName !== '' && aliasName !== null && aliasName !== 'null') {
+
+            const alias_params = {
+                FunctionName: functionName, /* required */
+                Name: aliasName, /* required */
+                FunctionVersion: data.Version,
+                // RevisionId: 'STRING_VALUE',
+                //RoutingConfig: {
+                //  AdditionalVersionWeights: {
+                //    '<AdditionalVersion>': 'NUMBER_VALUE',
+                //  }
+                //}
+            };
+            
             const alias = await lambda.updateAlias(alias_params).promise();            
             console.log("\nsuccess! updated alias");
         }        
