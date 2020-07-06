@@ -1,6 +1,6 @@
 {
   "name": "action-update-lambda",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Github Action to Update an AWS Lambda Function and Alias",
   "main": "action.js",
   "scripts": {
