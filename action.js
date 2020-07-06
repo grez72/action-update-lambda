@@ -41,7 +41,7 @@ async function run() {
         const data = await lambda.updateFunctionCode(update_params).promise();
 
         // avoid printing out environment variables:
-        const data_log = (({ FunctionName, FunctionArn, Version, RevisionId, LastUpdateStatus }) => ({ FunctionName, FunctionArn, Version, RevisionId, LastUpdateStatus }))(data);
+        const data_log = (({ FunctionName, Version, RevisionId, LastUpdateStatus }) => ({ FunctionName, Version, RevisionId, LastUpdateStatus }))(data);
         console.log("\nsuccess! updated lambda function:", data_log, "\n");
 
         console.log(`Updating Alias Name ${aliasName} to ${functionName}:${data.Version}!`);
@@ -59,10 +59,8 @@ async function run() {
         };
 
         if (dryRun !== true) {
-            const alias = await lambda.updateAlias(alias_params).promise();
-            const alias_log = (({ AliasArn, Name, FunctionVersion, Description, RevisionId }) => ({ AliasArn, Name, FunctionVersion, Description, RevisionId }))(data);
-            console.log("\nsuccess! updated alias:");
-            console.log(alias_log);
+            const alias = await lambda.updateAlias(alias_params).promise();            
+            console.log("\nsuccess! updated alias");
         }        
 
     } catch (error) {
